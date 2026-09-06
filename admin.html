@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PIA Admin Panel</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     LOGIN PAGE
+     ===================================================== -->
+
+<div id="loginPage" class="login-page">
+
+    <div class="login-box">
+
+        <div class="login-logo">
+            PIA
+        </div>
+
+        <h1>PRO INCOME ADMINISTRATION</h1>
+
+        <p>Secure Administration Panel</p>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+
+                <label for="adminUsername">
+                    Admin Username
+                </label>
+
+                <input
+                    type="text"
+                    id="adminUsername"
+                    placeholder="Enter username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="adminPassword">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Enter password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn-primary"
+            >
+                🔐 Login to Admin Panel
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     ADMIN PANEL
+     ===================================================== -->
+
+<div
+    id="adminPanel"
+    class="admin-layout"
+    style="display:none;"
+>
+
+
+    <!-- =================================================
+         SIDEBAR
+         ================================================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="pia">
+                PIA
+            </div>
+
+            <h2>
+                PRO INCOME<br>
+                ADMINISTRATION
+            </h2>
+
+        </div>
+
+
+        <ul class="sidebar-menu">
+
+            <li>
+                <a
+                    href="#dashboard"
+                    class="active"
+                >
+                    🏠 Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="#admins">
+                    👥 Admins / Leaders
+                </a>
+            </li>
+
+            <li>
+                <a href="#channels">
+                    📢 Official Channels
+                </a>
+            </li>
+
+            <li>
+                <a href="#media">
+                    🖼️ Gallery / Media
+                </a>
+            </li>
+
+            <li>
+                <a href="#notices">
+                    📣 News / Notices
+                </a>
+            </li>
+
+            <li>
+                <a href="#videos">
+                    🎬 Videos
+                </a>
+            </li>
+
+            <li>
+                <a href="#settings">
+                    ⚙️ Website Settings
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="javascript:void(0)"
+                    onclick="logout()"
+                >
+                    🚪 Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+
+
+    <!-- =================================================
+         MAIN CONTENT
+         ================================================= -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <div class="topbar">
+
+            <div>
+
+                <h1>
+                    PIA Admin Panel
+                </h1>
+
+                <p>
+                    Manage your website from one place
+                </p>
+
+            </div>
+
+
+            <button
+                class="logout-btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             DASHBOARD
+             ================================================= -->
+
+        <section
+            id="dashboard"
+            class="section"
+        >
+
+            <div class="section-title">
+
+                <h2>
+                    Dashboard
+                </h2>
+
+                <span>
+                    PIA Administration
+                </span>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="icon">
+                        👥
+                    </div>
+
+                    <h3 id="totalAdmins">
+                        0
+                    </h3>
+
+                    <p>
+                        Total PIA Members
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="icon">
+                        📢
+                    </div>
+
+                    <h3 id="totalChannels">
+                        0
+                    </h3>
+
+                    <p>
+                        Official Channels
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="icon">
+                        🖼️
+                    </div>
+
+                    <h3 id="totalMedia">
+                        0
+                    </h3>
+
+                    <p>
+                        Gallery Media
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="icon">
+                        📣
+                    </div>
+
+                    <h3 id="totalNotices">
+                        0
+                    </h3>
+
+                    <p>
+                        Published Notices
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ADMINS / LEADERS
+             ================================================= -->
+
+        <section
+            id="admins"
+            class="section"
+        >
+
+            <div class="section-title">
+
+                <h2>
+                    👥 Admins / Leaders
+                </h2>
+
+                <span>
+                    Add or manage PIA members
+                </span>
+
+            </div>
+
+
+            <!-- ADD ADMIN FORM -->
+
+            <div class="card">
+
+                <form id="adminForm">
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                PIA ID
+                            </label>
+
+                            <input
+                                type="text"
+                                id="piaId"
+                                placeholder="PIA-011"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="adminName"
+                                placeholder="Member name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Position
+                            </label>
+
+                            <input
+                                type="text"
+                                id="adminPosition"
+                                placeholder="Senior Leader"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Private Telegram Username / Link
+                            </label>
+
+                            <input
+                                type="text"
+                                id="adminTelegram"
+                                placeholder="@username or private link"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label>
+                                Bio
+                            </label>
+
+                            <textarea
+                                id="adminBio"
+                                placeholder="Short member biography..."
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label>
+                                Profile Photo
+                            </label>
+
+                            <div class="file-upload">
+
+                                <span>
+                                    📷
+                                </span>
+
+                                <p>
+                                    Select profile photo from your phone Gallery
+                                </p>
+
+                                <input
+                                    type="file"
+                                    id="adminPhoto"
+                                    accept="image/*"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <button
+                                type="submit"
+                                class="btn-primary"
+                            >
+                                ➕ Add / Update PIA Member
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <div
+                class="search-box"
+                style="margin-top:18px;"
+            >
+
+                <span class="search-icon">
+                    🔎
+                </span>
+
+                <input
+                    type="text"
+                    id="adminSearch"
+                    placeholder="Search PIA ID, name or position..."
+                >
+
+            </div>
+
+
+            <!-- ADMIN LIST -->
+
+            <div
+                id="adminsList"
+                class="admin-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             OFFICIAL CHANNELS
+             ================================================= -->
+
+        <section
+            id="channels"
+            class="section"
+        >
+
+            <div class="section-title">
+
+                <h2>
+                    📢 Official Channels
+                </h2>
+
+                <span>
+                    Manage Telegram channels
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <form id="channelForm">
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Channel Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="channelName"
+                                placeholder="PIA Official Channel"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Channel Type
+                            </label>
+
+                            <input
+                                type="text"
+                                id="channelType"
+                                placeholder="Official Telegram Channel"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label>
+                                Telegram URL
+                            </label>
+
+                            <input
+                                type="url"
+                                id="channelUrl"
+                                placeholder="https://t.me/..."
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label>
+                                Channel Logo
+                            </label>
+
+                            <div class="file-upload">
+
+                                <span>
+                                    📷
+                                </span>
+
+                                <p>
+                                    Select channel logo from Gallery
+                                </p>
+
+                                <input
+                                    type="file"
+                                    id="channelLogo"
+                                    accept="image/*"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <button
+                                type="submit"
+                                class="btn-primary"
+                            >
+                                ➕ Add Official Channel
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div
+                id="channelsList"
+                class="channel-grid"
+                style="margin-top:18px;"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             GALLERY / MEDIA
+             ================================================= -->
+
+        <section
+            id="media"
+            class="section"
+        >
+
+            <div class="section-title">
+
+                <h2>
+                    🖼️ Gallery / Media
+                </h2>
+
+                <span>
+                    Images and media
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="file-upload">
+
+                    <span>
+                        🖼️
+                    </span>
+
+                    <p>
+                        Select images or videos directly from your phone Gallery
+                    </p>
+
+                    <input
+                        type="file"
+                        id="mediaUpload"
+                        accept="image/*,video/*"
+                        multiple
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="mediaList"
+                class="media-grid"
+                style="margin-top:18px;"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             NEWS / NOTICE
+             ================================================= -->
+
+        <section
+            id="notices"
+            class="section"
+        >
+
+            <div class="section-title">
+
+                <h2>
+                    📣 News / Notices
+                </h2>
+
+                <span>
+                    Manage administration announcements
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <form id="noticeForm">
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group full-width">
+
+                            <label>
+                                Notice Title
+                            </label>
+
+                            <input
+                                type="text"
+                                id="noticeTitle"
+                                placeholder="Important Administration Notice"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label>
+                                Notice Message
+                            </label>
+
+                            <textarea
+                                id="noticeBody"
+                                placeholder="Write your announcement..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label>
+                                Notice Image
+                            </label>
+
+                            <div class="file-upload">
+
+                                <span>
+                                    📷
+                                </span>
+
+                                <p>
+                                    Optional notice image
+                                </p>
+
+                                <input
+                                    type="file"
+                                    id="noticeImage"
+                                    accept="image/*"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <button
+                                type="submit"
+                                class="btn-primary"
+                            >
+                                📢 Publish Notice
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <div
+                id="noticesList"
+                style="margin-top:18px;"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             VIDEOS
+             ================================================= -->
+
+        <section
+            id="videos"
+            class="section"
+        >
+
+            <div class="section-title">
+
+                <h2>
+                    🎬 Videos
+                </h2>
+
+                <span>
+                    Upload website videos
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="file-upload">
+
+                    <span>
+                        🎬
+                    </span>
+
+                    <p>
+                        Select videos from your phone Gallery
+                    </p>
+
+                    <input
+                        type="file"
+                        id="videoUpload"
+                        accept="video/*"
+                        multiple
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="videosList"
+                class="media-grid"
+                style="margin-top:18px;"
+            ></div>
+
+        </section>
+
+
+        <!-- =================================================
+             WEBSITE SETTINGS
+             ================================================= -->
+
+        <section
+            id="settings"
+            class="section"
+        >
+
+            <div class="section-title">
+
+                <h2>
+                    ⚙️ Website Settings
+                </h2>
+
+                <span>
+                    Manage website branding
+                </span>
+
+            </div>
+
+
+            <div class="card">
+
+                <form id="settingsForm">
+
+                    <div class="form-grid">
+
+
+                        <div class="form-group full-width">
+
+                            <label>
+                                Website Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="siteName"
+                                value="PRO INCOME ADMINISTRATION"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <label>
+                                Website Logo
+                            </label>
+
+                            <div class="file-upload">
+
+                                <span>
+                                    🏆
+                                </span>
+
+                                <p>
+                                    Select website logo from your phone Gallery
+                                </p>
+
+                                <input
+                                    type="file"
+                                    id="siteLogo"
+                                    accept="image/*"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group full-width">
+
+                            <button
+                                type="submit"
+                                class="btn-primary"
+                            >
+                                💾 Save Website Settings
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="admin.js"></script>
+
+</body>
+</html>
